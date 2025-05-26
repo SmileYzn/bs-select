@@ -66,14 +66,6 @@
             {
                 clear: 'bi bi-x',
                 removeTag: 'bi bi-x-circle-fill'
-            },
-            ajax:
-            {
-                url: 'https://pugbr.net/select/ajax.php',
-                createParameters: (searchValue) =>
-                {
-                    return {select: 'cidade', pesquisa: searchValue};
-                }
             }
         }, options);
         
