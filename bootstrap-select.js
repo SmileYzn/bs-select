@@ -2,23 +2,24 @@
 {
     'use strict';
     
-    function deepMerge(obj1, obj2)
+    function deepMerge(primaryObject, secondaryObject)
     {
-        for (let key in obj2)
+        for (const key in secondaryObject)
         {
-            if (obj2.hasOwnProperty(key))
+            if (secondaryObject.hasOwnProperty(key))
             {
-                if (obj2[key] instanceof Object && obj1[key] instanceof Object)
+                if (secondaryObject[key] instanceof Object && primaryObject[key] instanceof Object)
                 {
-                    obj1[key] = deepMerge(obj1[key], obj2[key]);
+                    primaryObject[key] = deepMerge(primaryObject[key], secondaryObject[key]);
                 }
                 else
                 {
-                    obj1[key] = obj2[key];
+                    primaryObject[key] = secondaryObject[key];
                 }
             }
         }
-        return obj1;
+        
+        return primaryObject;
     };
     
     function debounceFunction(func, delay)
