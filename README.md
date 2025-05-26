@@ -1,27 +1,24 @@
-<h3 align="center">Bootstrap 5.3 Select UI Control Box</h3>
-<p align="center">A vanilla and dynamic JavaScript framework to control and design select boxes based on Bootstrap 5 design</p>
-<hr>
+### Bootstrap 5.3 Select UI Control Box
+A vanilla and dynamic JavaScript framework to control and design select boxes based on Bootstrap 5 design
 
-<h4>Features</h4>
-<ul>
-  <li>Support Bootstrap 5 template</li>
-  <li>Search Input</li>
-  <li>Single and multiple select support</li>
-  <li>Item creation support</li>
-  <li>AJAX support</li>
-  <li>Clear selected items with BACKSPACE key</li>
-  <li>Language replace support</li>
-  <li>Bootstrap icons for clear and remove tag</li>
-  <li>Vanilla javascript, no external dependences</li>
-</ul>
+#### Features
+- Support Bootstrap 5 template and icons
+- Search Input
+- Single and multiple select support
+- Item creation support
+- AJAX support
+- Clear selected items with BACKSPACE key
+- Language replace support
+- Bootstrap icons for clear and remove tag
+- Vanilla javascript, no external dependences
 
-<h5>Select initialization</h5>
+##### Select initialization
 
 ``` javascript
 new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options */);
 ```
 
-<h5>Full Plugin Default Options (With AJAX Support)</h5>
+##### Full Plugin Default Options (With AJAX Support)
 
 ``` javascript
 {
@@ -56,7 +53,7 @@ new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options *
 }
 ```
 
-<h5>Bootstrap select API methods</h5>
+##### Bootstrap select API methods
 
 ``` javascript
 const instance = new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options */);
