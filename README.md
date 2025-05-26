@@ -17,11 +17,13 @@ A vanilla and dynamic JavaScript framework to control and design select boxes ba
 - Bootstrap icons for clear and remove tag
 - Vanilla javascript, no external dependences
 
+
 ##### Select initialization
 
 ``` javascript
 new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options */);
 ```
+
 
 ##### Full Plugin Default Options (With AJAX Support)
 
@@ -57,6 +59,7 @@ new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options *
     }
 }
 ```
+
 
 ##### Bootstrap select API methods
 
