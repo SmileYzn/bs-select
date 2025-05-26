@@ -1,0 +1,45 @@
+.bs-wrapper .form-select
+{
+    gap: 0.25rem;
+    padding-left: 0.75rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
+}
+
+.bs-wrapper .dropdown-menu
+{
+    padding: 0.375rem;
+    width: 100%;
+}
+
+.bs-wrapper .bs-clear
+{
+    border:none;
+    background:none;
+    outline:none;
+    
+    position: absolute;
+    padding: 0;
+    box-shadow: none;
+    top: 0;
+    bottom: 0;
+    right: 2.25rem;
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+}
+
+.bs-wrapper .bs-input
+{
+    border:none;
+    background:none;
+    outline:none;
+    display: inline-block;
+    flex: 1 1 auto;
+    max-height: none !important;
+    max-width: 100% !important;
+    min-height: 0 !important;
+    min-width: 7rem;
+}
