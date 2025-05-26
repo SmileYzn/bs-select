@@ -1,5 +1,8 @@
 ### Bootstrap 5.3 Select UI Control Box
+
 A vanilla and dynamic JavaScript framework to control and design select boxes based on Bootstrap 5 design
+
+-----
 
 #### Features
 - Support Bootstrap 5 template and icons
