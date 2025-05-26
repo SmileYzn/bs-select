@@ -2,6 +2,25 @@
 {
     'use strict';
     
+    function deepMerge(obj1, obj2)
+    {
+        for (let key in obj2)
+        {
+            if (obj2.hasOwnProperty(key))
+            {
+                if (obj2[key] instanceof Object && obj1[key] instanceof Object)
+                {
+                    obj1[key] = deepMerge(obj1[key], obj2[key]);
+                }
+                else
+                {
+                    obj1[key] = obj2[key];
+                }
+            }
+        }
+        return obj1;
+    };
+    
     function debounceFunction(func, delay)
     {
         let id = 0;
@@ -26,8 +45,8 @@
 
         this.element = element;
 
-        this.options = Object.assign({},
-        {
+        this.options = deepMerge
+        ({
             create: false,
             clear: true,
             maxHeight: '400px',
@@ -47,6 +66,14 @@
             {
                 clear: 'bi bi-x',
                 removeTag: 'bi bi-x-circle-fill'
+            },
+            ajax:
+            {
+                url: 'https://pugbr.net/select/ajax.php',
+                createParameters: (searchValue) =>
+                {
+                    return {select: 'cidade', pesquisa: searchValue};
+                }
             }
         }, options);
         
