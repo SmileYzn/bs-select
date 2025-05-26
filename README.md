@@ -4,7 +4,7 @@ A vanilla and dynamic JavaScript framework to control and design select boxes ba
 
 -----
 
-[![](https://data.jsdelivr.com/v1/package/gh/SmileYzn/bootstrap-select/badge)](https://www.jsdelivr.com/package/gh/SmileYzn/bootstrap-select)
+<a target="_blank" href="https://www.jsdelivr.com/package/gh/SmileYzn/bootstrap-select"><img src="https://data.jsdelivr.com/v1/package/gh/SmileYzn/bootstrap-select/badge"></a>
 
 #### Features
 - Support Bootstrap 5 template and icons
