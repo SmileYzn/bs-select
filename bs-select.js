@@ -536,7 +536,12 @@
 
         const getDropdownButton = () =>
         {
-            let button = `<div class="form-select" data-bs-toggle="dropdown" aria-expanded="false">`
+            if (!this.element.classList.contains('form-select'))
+            {
+                this.element.classList.add('form-select');
+            }
+            
+            const button = `<div class="${this.element.className}" data-bs-toggle="dropdown" aria-expanded="false">`
             + getSelectedItems()
             + getSearchInput()
             + `</div>`;
