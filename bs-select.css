@@ -6,6 +6,7 @@
     align-items: center;
     flex-wrap: wrap;
     text-align: left;
+    user-select: none;
 }
 
 .bs-wrapper .dropdown-menu
