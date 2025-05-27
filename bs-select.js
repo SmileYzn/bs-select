@@ -500,13 +500,11 @@
                         label = this.options.lang.typeSearch.replace('[length]', (this.options.searchMinLength - this.dropdownSearch.value.length));
                     }
                 }
-                else
-                {
-                    label = this.options.lang.typeSearch.replace('[length]', (this.options.searchMinLength));
-                }
             }
             
-            return `<span ${items.length > 0 ? 'style="display:none;"' : ''} class="dropdown-item text-body-secondary">${label}</span>`;
+            const options = Array.from(items).filter((option) => (option.value === '' && option.textContent === ''));
+
+            return `<span ${options.length > 0 ? 'style="display:none;"' : ''} class="dropdown-item text-body-secondary">${label}</span>`;
         };
 
         const getClearButton = () =>
