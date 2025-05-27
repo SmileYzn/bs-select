@@ -526,7 +526,7 @@
         {
             const placeHolder = (this.element.value <= 0) ? getPlaceholder() : '';
             
-            if (this.options.search || this.element.multiple)
+            if (this.options.search || this.options.create)
             {
                 return `<input type="text" class="bs-input" placeholder="${placeHolder}" autocomplete="off">`;
             }
