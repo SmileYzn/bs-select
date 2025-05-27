@@ -415,7 +415,7 @@
                     if (this.dropdownSearch.tagName === 'INPUT')
                     {
                         this.dropdownSearch.value = '';
-                        
+
                         this.dropdownSearch.placeholder = text;
                     }
                     else
@@ -504,9 +504,7 @@
                 }
             }
             
-            const options = Array.from(items).filter((option) => (option.value === '' && option.textContent === ''));
-
-            return `<span ${options.length > 0 ? 'style="display:none;"' : ''} class="dropdown-item text-body-secondary">${label}</span>`;
+            return `<span ${items.length > 0 ? 'style="display:none;"' : ''} class="dropdown-item text-body-secondary">${label}</span>`;
         };
 
         const getClearButton = () =>
