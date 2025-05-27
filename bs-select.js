@@ -414,6 +414,8 @@
                     
                     if (this.dropdownSearch.tagName === 'INPUT')
                     {
+                        this.dropdownSearch.value = '';
+                        
                         this.dropdownSearch.placeholder = text;
                     }
                     else
