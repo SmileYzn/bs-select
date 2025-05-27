@@ -1,6 +1,6 @@
 {
   "name": "bs-select", 
-  "version": "0.0.1",
+  "version": "0.0.4",
   "description": "Dropdown select box for Bootstrap 5",
   "keywords": [
     "select",
