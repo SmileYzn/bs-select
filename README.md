@@ -10,8 +10,9 @@ A vanilla and dynamic JavaScript framework to control and design select boxes ba
 - Support Bootstrap 5 template and icons
 - Search Input
 - Single and multiple select support
-- Item creation support
-- AJAX support
+- Option Group support
+- Item create and remove support
+- Remote AJAX data support
 - Clear selected items with BACKSPACE key
 - Language replace support
 - Bootstrap icons for clear and remove tag
@@ -21,11 +22,10 @@ A vanilla and dynamic JavaScript framework to control and design select boxes ba
 ##### Select initialization
 
 ``` javascript
-new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options */);
+new bsSelect(document.querySelector('#bootstrap-select'), /* Object of settings */);
 ```
 
-
-##### Full Plugin Default Options
+##### Full plugin with default settings
 
 ``` javascript
 {
@@ -71,25 +71,67 @@ new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options *
 ##### Bootstrap select API methods
 
 ``` javascript
-const instance = new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options */);
+const selectElement = document.querySelector('#bootstrap-select');
 
-// Refresh select box with added / removed select option items
-// instance.refresh();
+if (selectElement)
+{
+    // Create instance
+    const instance = new bsSelect(selectElement, /* Object of settings */);
+    
+    // Refresh select box with added / removed select option items
+    // instance.refresh();
+    
+    // Set selected option
+    // instance.set(/* String of alue '' */);
+    // instance.set(/* Array of values [] */);
+    
+    // Get selected option / options as string or array
+    // instance.get();
+    
+    // Toggle selected option or selected options
+    // instance.toggle(/* String of alue '' */, /* selected value as boolean true or false*/);
+    // instance.toggle(/* Array of values [] */, /* selected value as boolean true or false*/);
 
-// Set selected option
-// instance.set(/* String of alue '' */);
-// instance.set(/* Array of values [] */);
+    // Add new option
+    instance.add(text, value, defaultSelected, selected);
 
-// Get selected option / options as string or array
-// instance.get();
-
-// Toggle selected option or selected options
-// instance.toggle(/* String of alue '' */, /* selected value as boolean true or false*/);
-// instance.toggle(/* Array of values [] */, /* selected value as boolean true or false*/);
-
-// Clear selected item or selected items
-// instance.clear();
-
-// Destroy instance
-// instnace.destroy();
+    // Remove option by value
+    instance.remove(value);
+    
+    // Clear selected item or selected items
+    // instance.clear();
+    
+    // Destroy instance
+    // instnace.destroy();
+    
+    // To add an option (Vanilla JS method)
+    // selectElement.append(new Option('The text of this option', 'The value of this option', true, true));
+    
+    // To update select box with added / removed option (Vanilla JS method)
+    // selectElement.dispatchEvent(new Event('change'));
+}
 ```
+> You always can use instance or select element methods to work with API
+
+##### Bootstrap select API events
+
+``` javascript
+document.addEventListener('DOMContentLoaded', () =>
+{
+    // The element
+    const selectElement = document.querySelector('#bootstrap-select');
+
+    if (selectElement)
+    {
+        // Instance
+        const instance = new bsSelect(selectElement);
+
+        // To listener the change event (Or any event related with <select> element)
+        selectElement.addEventListener('change', () =>
+        {
+            // Get selected options like selectElement.value
+            console.log(selectElement.value);
+        });
+    }
+});
+``` 
