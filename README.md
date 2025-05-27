@@ -93,16 +93,16 @@ if (selectElement)
     // instance.toggle(/* Array of values [] */, /* selected value as boolean true or false*/);
 
     // Add new option
-    instance.add(text, value, defaultSelected, selected);
+    // instance.add(text, value, defaultSelected, selected);
 
     // Remove option by value
-    instance.remove(value);
+    // instance.remove(value);
     
     // Clear selected item or selected items
     // instance.clear();
     
     // Destroy instance
-    // instnace.destroy();
+    // instance.destroy();
     
     // To add an option (Vanilla JS method)
     // selectElement.append(new Option('The text of this option', 'The value of this option', true, true));
