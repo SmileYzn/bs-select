@@ -11,17 +11,10 @@
 
 .bs-wrapper .form-select-sm
 {
-    gap: 0.25rem;
 	padding-top: .25rem;
 	padding-bottom: .25rem;
 	padding-left: .5rem;
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    text-align: left;
-    user-select: none;
 }
-
 
 .bs-wrapper .dropdown-menu
 {
