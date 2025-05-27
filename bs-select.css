@@ -1,13 +1,27 @@
 .bs-wrapper .form-select
 {
     gap: 0.25rem;
-    padding-left: 0.75rem;
+    padding: .375rem 2.25rem .375rem .75rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
     text-align: left;
     user-select: none;
 }
+
+.bs-wrapper .form-select-sm
+{
+    gap: 0.25rem;
+	padding-top: .25rem;
+	padding-bottom: .25rem;
+	padding-left: .5rem;
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    text-align: left;
+    user-select: none;
+}
+
 
 .bs-wrapper .dropdown-menu
 {
