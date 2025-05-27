@@ -1,0 +1,30 @@
+{
+  "name": "bs-select-5",
+  "version": "0.0.1",
+  "description": "Dropdown select box for Bootstrap 5",
+  "keywords": [
+    "select",
+    "dropdown",
+    "combobox",
+    "multiple",
+    "bootstrap",
+    "menu",
+    "select2",
+    "tomselect"
+  ],
+  "homepage": "https://github.com/SmileYzn/bootstrap-select#readme",
+  "bugs": {
+    "url": "https://github.com/SmileYzn/bootstrap-select/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SmileYzn/bootstrap-select.git"
+  },
+  "license": "MIT",
+  "author": "SmileYzn",
+  "type": "commonjs",
+  "main": "bootstrap-select.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  }
+}
