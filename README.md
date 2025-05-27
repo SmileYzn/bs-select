@@ -25,12 +25,13 @@ new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options *
 ```
 
 
-##### Full Plugin Default Options (With AJAX Support)
+##### Full Plugin Default Options
 
 ``` javascript
 {
     create: false,
-    clear: true,
+    clear: false,
+    search: true,
     maxHeight: '400px',
     debounceSearch: 300,
     clearBackspace: true,
@@ -48,17 +49,23 @@ new bsSelect(document.querySelector('#bootstrap-select'), /* Object of options *
     {
         clear: 'bi bi-x',
         removeTag: 'bi bi-x-circle-fill'
-    },
+    }
+}
+```
+
+##### To include AJAX support in options
+
+```javascript
     ajax:
     {
-        url: 'https://github.com/select/ajax.php',
+        url: 'https://api.your-site.com/ajax',
         createParameters: (searchValue) =>
         {
             return {select: 'bs-select-ajax', searchTerm: searchValue};
         }
     }
-}
 ```
+> Ps. Returning array as `['key' => 'value']` to act as `<option value="$key">$value</option>` is mandatory
 
 
 ##### Bootstrap select API methods
