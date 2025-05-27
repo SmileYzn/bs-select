@@ -49,7 +49,8 @@
         this.options = deepMerge
         ({
             create: false,
-            clear: true,
+            clear: false,
+            search: true,
             maxHeight: '400px',
             debounceSearch: 300,
             clearBackspace: true,
@@ -72,19 +73,22 @@
         
         const create = () =>
         {
-            const value = this.dropdownSearch.value.trim();
-            
-            if (value)
+            if (this.dropdownSearch)
             {
-                if (!Array.from(this.element.options).some(o => o.value === value))
-                {
-                    this.element.insertAdjacentElement('afterbegin', new Option(value, value, true, true));
-                    
-                    this.element.dispatchEvent(new Event('change'));
+                const value = this.dropdownSearch.value.trim();
 
-                    this.dropdownSearch.value = '';
-                    
-                    this.dropdownSearch.dispatchEvent(new Event('keyup'));
+                if (value)
+                {
+                    if (!Array.from(this.element.options).some(o => o.value === value))
+                    {
+                        this.element.insertAdjacentElement('afterbegin', new Option(value, value, true, true));
+
+                        this.element.dispatchEvent(new CustomEvent('change'));
+
+                        this.dropdownSearch.value = '';
+
+                        this.dropdownSearch.dispatchEvent(new Event('keyup'));
+                    }
                 }
             }
         };
@@ -111,7 +115,7 @@
                     }
                 }).finally(() =>
                 {
-                    this.element.dispatchEvent(new Event('change'));
+                    this.element.dispatchEvent(new CustomEvent('change'));
                 });
             }
         };
@@ -189,13 +193,16 @@
 
                     if (this.options.create)
                     {
-                        if (this.dropdownSearch.value)
+                        if (this.dropdownSearch)
                         {
-                            noResults.textContent = this.options.lang.searchAddPlaceholder.replace('[search-value]', this.dropdownSearch.value);
-
-                            if (event.key === 'Enter')
+                            if (this.dropdownSearch.value)
                             {
-                                create();
+                                noResults.textContent = this.options.lang.searchAddPlaceholder.replace('[search-value]', this.dropdownSearch.value);
+
+                                if (event.key === 'Enter')
+                                {
+                                    create();
+                                }
                             }
                         }
                     }
@@ -225,8 +232,11 @@
                         foundItems.forEach((item) =>
                         {
                             item.click();
-
-                            this.dropdownSearch.value = '';
+                            
+                            if (this.dropdownSearch)
+                            {
+                                this.dropdownSearch.value = '';
+                            }
                         });
                     }
                 }
@@ -251,11 +261,14 @@
                     this.element.value = '';
                 }
                 
-                this.element.dispatchEvent(new Event('change'));
+                this.element.dispatchEvent(new CustomEvent('change'));
 
                 this.dropdownButton.click();
                 
-                this.dropdownSearch.value = '';
+                if (this.dropdownSearch)
+                {
+                    this.dropdownSearch.value = '';
+                }
             }
         };
 
@@ -270,11 +283,14 @@
                     option.selected = false;
                 }
 
-                this.element.dispatchEvent(new Event('change'));
+                this.element.dispatchEvent(new CustomEvent('change'));
 
                 this.dropdownButton.click();
                 
-                this.dropdownSearch.value = '';
+                if (this.dropdownSearch)
+                {
+                    this.dropdownSearch.value = '';
+                }
             }
         };
 
@@ -294,7 +310,7 @@
                 this.dropdownButton.click();
             }
 
-            this.element.dispatchEvent(new Event('change'));
+            this.element.dispatchEvent(new CustomEvent('change'));
 
             this.dropdownButton.focus();
 
@@ -309,27 +325,32 @@
         {
             if (this.element.value)
             {
-                Array.from(this.element.options).forEach((option) =>
+                if (this.dropdownSearch)
                 {
-                    option.selected = false;
-                });
-                
-                this.element.value = (this.element.multiple) ? [] : '';
+                    Array.from(this.element.options).forEach((option) =>
+                    {
+                        option.selected = false;
+                    });
 
-                this.element.dispatchEvent(new Event('change'));
+                    this.element.value = (this.element.multiple) ? [] : '';
+
+                }
+                else
+                {
+                    this.element.selectedIndex = 0;
+                }
+                
+                this.element.dispatchEvent(new CustomEvent('change'));
             }
         };
 
         const getPlaceholder = () =>
         {
-            if (this.element.getAttribute('placeholder'))
+            const placeholder = this.element.getAttribute('placeholder');
+            
+            if (placeholder && placeholder.length > 0)
             {
-                const text = this.element.getAttribute('placeholder');
-                
-                if (text.length)
-                {
-                    return text;
-                }
+                return placeholder;
             }
             
             const option = Array.from(this.element.options).filter((option) => (option.value === '' || !option.hasAttribute('value')));
@@ -344,7 +365,7 @@
             
             if (this.options.ajax)
             {
-                return this.options.lang.typeSearch.replace('[length]', this.options.searchMinLength);
+                return this.options.lang.typeSearch.replace('[length]', this.options.searchMinLength || 3);
             }
             
             if (this.element.multiple)
@@ -385,7 +406,7 @@
                 
                 if (this.dropdownSearch)
                 {
-                    this.dropdownSearch.placeholder = (selectedItems.length > 0) ? '' : getPlaceholder();
+                    this.dropdownSearch.placeholder = (selectedItems.length <= 0) ? getPlaceholder() : '';
                 }
             }
         };
@@ -473,9 +494,9 @@
 
         const getClearButton = () =>
         {
-            if (!this.element.multiple)
+            if (this.options.clear)
             {
-                if (this.options.clear)
+                if (!this.element.multiple)
                 {
                     return `<button type="button" class="btn btn-sm bs-clear" title="${this.options.lang.clearSelect}"><span class="${this.options.icon.clear}"></span></button>`;
                 }
@@ -486,7 +507,14 @@
 
         const getSearchInput = () =>
         {
-            return `<input type="text" class="bs-input" placeholder="${getPlaceholder()}" autocomplete="off">`;
+            if (this.options.search || this.element.multiple)
+            {
+                const placeHolder = (this.element.value <= 0) ? getPlaceholder() : '';
+                
+                return `<input type="text" class="bs-input" placeholder="${placeHolder}" autocomplete="off">`;
+            }
+            
+            return '';
         };
 
         const getDropdownButton = () =>
@@ -522,7 +550,7 @@
         };
 
         const createSearch = () =>
-        {            
+        {
             if (this.dropdown)
             {
                 if (this.dropdownSearch)
@@ -562,12 +590,12 @@
                         
                         if (event.key === 'Backspace')
                         {
-                            if (!this.dropdownSearch.value)
+                            if (this.options.clearBackspace)
                             {
-                                if (this.options.clearBackspace)
+                                if (!this.dropdownSearch.value)
                                 {
                                     removeLastSelectedTag();
-                                    
+
                                     event.preventDefault();
                                     return false;
                                 }
@@ -634,7 +662,7 @@
             
             this.dropdownSearch = this.dropdownButton.querySelector('input');
             
-            this.dropdownClearButton = this.dropdown.querySelector('.bs-clear')
+            this.dropdownClearButton = this.dropdown.querySelector('.bs-clear');   
             
             this.dropdownMenu = this.dropdown.querySelector('.dropdown-menu');
 
