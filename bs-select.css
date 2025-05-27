@@ -1,7 +1,7 @@
 .bs-wrapper .form-select
 {
     gap: 0.25rem;
-    padding-left: 0.75rem;
+    padding: 0.5rem;
     display: flex;
     align-items: center;
     flex-wrap: wrap;
