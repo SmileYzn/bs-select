@@ -109,12 +109,12 @@
                 
                 fetch(this.options.ajax.url + '?' + new URLSearchParams(this.options.ajax.createParameters(value))).then(response => response.json()).then(results =>
                 {
-                    if (results.length > 0)
+                    if (results)
                     {
-                        results.forEach((item) =>
+                        for (const [value, text] of Object.entries(results))
                         {
-                            this.element.insertAdjacentElement('afterbegin', new Option(item.text, item.value, false, false));
-                        });
+                            this.element.insertAdjacentElement('afterbegin', new Option(text, value, false, false));
+                        }
                     }
                 }).finally(() =>
                 {
