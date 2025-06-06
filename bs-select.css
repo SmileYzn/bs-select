@@ -45,7 +45,7 @@
     background:none;
     outline:none;
     display: inline-block;
-    flex: 1 1 auto;
+    flex: 1 1;
     max-height: none !important;
     max-width: 100% !important;
     min-height: 0 !important;
