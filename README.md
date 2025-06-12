@@ -36,6 +36,7 @@ new bsSelect(document.querySelector('#bootstrap-select'), /* Object of settings 
     debounceSearch: 300,
     clearBackspace: true,
     searchMinLength: 3,
+    autoClose: true,
     lang:
     {
         searchAddPlaceholder: 'Type ENTER to add: [search-value]',
