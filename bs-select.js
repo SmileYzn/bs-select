@@ -55,6 +55,8 @@
             debounceSearch: 300,
             clearBackspace: true,
             searchMinLength: 3,
+            autoClose: false,
+            hideSelected: false,
             lang:
             {
                 searchAddPlaceholder: 'Type ENTER to add: [search-value]',
@@ -405,7 +407,7 @@
                     const items = getItems();
                     
                     this.dropdownMenu.innerHTML = items.join('');
-                    this.dropdownMenu.innerHTML += getNoResults(items);
+                    this.dropdownMenu.innerHTML += getNoResults();
                 }
                 
                 if (this.dropdownSearch)
@@ -477,6 +479,11 @@
                     }
                     else if (option.tagName === 'OPTION')
                     {
+                        if (this.options.hideSelected && option.selected)
+                        {
+                            return;
+                        }
+
                         const selected = option.selected ? 'active' : '';
                         const disabled = (option.disabled || option.selected) ? 'disabled' : '';
                         const hidden   = ((!option.hasAttribute('value') || option.value === '') ? 'hidden' : '');
@@ -489,7 +496,7 @@
             return items;
         };
 
-        const getNoResults = (items) =>
+        const getNoResults = () =>
         {
             let label = this.options.lang.noResults;
             
@@ -541,7 +548,7 @@
                 this.element.classList.add('form-select');
             }
             
-            const button = `<div class="${this.element.className}" data-bs-toggle="dropdown" aria-expanded="false">`
+            const button = `<div class="${this.element.className}" data-bs-toggle="dropdown" aria-expanded="false" data-bs-auto-close="${this.options.autoClose}">`
             + getSelectedItems()
             + getSearchInput()
             + `</div>`;
@@ -638,7 +645,7 @@
             + getDropdownButton()
             + `<div class="dropdown-menu" style="max-height:${this.options.maxHeight};overflow-y:auto;">`
             + items.join('')
-            + getNoResults(items)
+            + getNoResults()
             + `</div>`
             + getClearButton()
             + `</div>`;
