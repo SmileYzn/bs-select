@@ -22,6 +22,11 @@
     width: 100%;
 }
 
+.bs-wrapper .dropdown-menu:not(:has(button))
+{
+    display: none;
+}
+
 .bs-wrapper .bs-clear
 {
     border:none;
